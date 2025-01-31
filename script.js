@@ -20,6 +20,7 @@ function generateInvitation() {
     const weddingPlace = document.getElementById('weddingPlace').value;
     const fontSelect = document.getElementById('fontSelect').value;
 
+    // Проверка на обязательные поля
     if (!guestName1 || (invitationType === 'family' && !guestName2) || !backgroundUpload ||
         !brideName || !groomName || !weddingDate || !weddingTime || !weddingPlace) {
         alert('Պահանջվում են բոլոր դաշտերը:');
@@ -40,7 +41,7 @@ function generateInvitation() {
             let minFontSize = 24;
             let fontSize = maxFontSize * 0.9 * 0.85;
 
-            // Apply selected font
+            // Применяем выбранный шрифт
             ctx.font = `${fontSize}px ${fontSelect}`;
             ctx.fillStyle = 'black';
             ctx.textAlign = 'center';
@@ -57,6 +58,7 @@ function generateInvitation() {
 
             let lineHeight = fontSize * 1.5;
 
+            // Динамически корректируем размер шрифта
             while (y < 0 || y + lines.length * lineHeight > canvas.height) {
                 fontSize -= 2;
                 ctx.font = `${fontSize}px ${fontSelect}`;
@@ -70,6 +72,7 @@ function generateInvitation() {
                 y += lineHeight;
             });
 
+            // Показываем превью изображения
             document.getElementById('previewImage').src = canvas.toDataURL("image/png");
             document.getElementById('previewImage').style.display = 'block';
         };
